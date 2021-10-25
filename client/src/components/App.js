@@ -1,18 +1,22 @@
+import React from 'react'
 import Login from './Login'
+import useLocalStorage from '../hooks/useLocalStorage';
 import Dashboard from './Dashboard'
-import UseLocalStorage from '../hooks/UseLocalStorage'
 import { ContactsProvider } from '../contexts/ContactsProvider'
-import { ConversationsProvider } from '../contexts/ConversationsProvider'
+import { ConversationsProvider } from '../contexts/ConversationsProvider';
+import { SocketProvider } from '../contexts/SocketProvider';
 
 function App() {
-  const [id, setId] = UseLocalStorage('id')
+  const [id, setId] = useLocalStorage('id')
 
   const dashboard = (
-    <ContactsProvider>
-      <ConversationsProvider id={id}>
-        <Dashboard id={id} />
-      </ConversationsProvider>
-    </ContactsProvider>
+    <SocketProvider id={id}>
+      <ContactsProvider>
+        <ConversationsProvider id={id}>
+          <Dashboard id={id} />
+        </ConversationsProvider>
+      </ContactsProvider>
+    </SocketProvider>
   )
 
   return (
@@ -20,4 +24,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

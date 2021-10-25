@@ -7,6 +7,7 @@ export default function Login({ onIdSubmit }) {
 
   function handleSubmit(e) {
     e.preventDefault()
+
     onIdSubmit(idRef.current.value)
   }
 
@@ -15,14 +16,14 @@ export default function Login({ onIdSubmit }) {
   }
 
   return (
-    <Container className="d-flex align-items-center" style={{ height: '100vh' }}>
+    <Container className="align-items-center d-flex" style={{ height: '100vh' }}>
       <Form onSubmit={handleSubmit} className="w-100">
         <Form.Group>
-          <Form.Label>Enter your Id</Form.Label>
+          <Form.Label>Enter Your Id</Form.Label>
           <Form.Control type="text" ref={idRef} required />
-        </Form.Group>
-        <Button type="submit">Login</Button>
-        <Button onClick={createNewId} variant="secondary" className="m-2">Create new Id</Button>
+        </Form.Group>   
+        <Button type="submit" className="mr-2">Login</Button>
+        <Button onClick={createNewId} variant="secondary">Create A New Id</Button>
       </Form>
     </Container>
   )

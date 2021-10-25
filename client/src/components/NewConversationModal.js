@@ -5,14 +5,13 @@ import { useConversations } from '../contexts/ConversationsProvider'
 
 export default function NewConversationModal({ closeModal }) {
   const [selectedContactIds, setSelectedContactIds] = useState([])
-  const {contacts} = useContacts()
-  const {createConversation} = useConversations()
+  const { contacts } = useContacts()
+  const { createConversation } = useConversations()
 
   function handleSubmit(e) {
     e.preventDefault()
 
     createConversation(selectedContactIds)
-
     closeModal()
   }
 
@@ -20,7 +19,7 @@ export default function NewConversationModal({ closeModal }) {
     setSelectedContactIds(prevSelectedContactIds => {
       if (prevSelectedContactIds.includes(contactId)) {
         return prevSelectedContactIds.filter(prevId => {
-          return prevId !== contactId
+          return contactId !== prevId
         })
       } else {
         return [...prevSelectedContactIds, contactId]
@@ -30,9 +29,7 @@ export default function NewConversationModal({ closeModal }) {
 
   return (
     <>
-      <Modal.Header closeButton>
-        <Modal.Title>Create conversation</Modal.Title>
-      </Modal.Header>
+      <Modal.Header closeButton>Create Conversation</Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
           {contacts.map(contact => (
